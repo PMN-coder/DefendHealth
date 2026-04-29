@@ -1,0 +1,17 @@
+{
+  "name": "DefendHealth Codespace",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "forwardPorts": [8000, 6080],
+  "postCreateCommand": "sudo service mysql start && mysql -u root -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '2007'; FLUSH PRIVILEGES; CREATE DATABASE IF NOT EXISTS fraud_db;\" && pip install fastapi uvicorn pydantic mysql-connector-python pandas scikit-learn requests python-multipart && cd frontend && npm install"
+}
